@@ -41,5 +41,5 @@ Before running the project, ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/student-management-system.git
-cd student-management-system](https://github.com/Vishnukrchy/student_management_system_spring_boot.git)
+https://github.com/Vishnukrchy/student_management_system_spring_boot.git
+
