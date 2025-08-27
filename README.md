@@ -21,7 +21,7 @@ This is a **Student Management System** built using **Spring Boot**. The applica
 - **Java**: Programming language.
 - **Spring Boot**: Framework for building the application.
 - **Maven**: Dependency management and build tool.
-- **H2 Database**: In-memory database for development and testing.
+- **MySQL Database**: In-memory database for development and testing.
 - **JUnit 5**: Unit testing framework.
 - **Mockito**: Mocking framework for testing.
 
