@@ -104,7 +104,6 @@ class StudentServiceImplTest {
         // Given
         Long studentId = 1L;
         when(studentRepository.findById(studentId)).thenReturn(Optional.of(student));
-        when(studentRepository.existsByEmail(studentRequest.getEmail())).thenReturn(false);
         when(studentRepository.save(any(Student.class))).thenReturn(student);
 
         // When

@@ -92,7 +92,6 @@ class SubjectServiceImplTest {
         // Given
         Long subjectId = 1L;
         when(subjectRepository.findById(subjectId)).thenReturn(Optional.of(subject));
-        when(subjectRepository.existsByName(subjectRequest.getName())).thenReturn(false);
         when(subjectRepository.save(any(Subject.class))).thenReturn(subject);
 
         // When
