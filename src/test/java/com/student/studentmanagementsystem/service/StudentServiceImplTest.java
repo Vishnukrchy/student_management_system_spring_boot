@@ -197,4 +197,50 @@ class StudentServiceImplTest {
         verify(studentRepository).findById(studentId);
         verify(studentRepository).delete(student);
     }
+    @Test
+    void deleteStudent_StudentNotFound_ThrowsException() {
+        // Given
+        Long studentId = 1L;
+        when(studentRepository.findById(studentId)).thenReturn(Optional.empty());
+
+        // When & Then
+        ResourceNotFoundException exception = assertThrows(
+                ResourceNotFoundException.class,
+                () -> studentService.deleteStudent(studentId)
+        );
+
+        assertTrue(exception.getMessage().contains("Student not found"));
+        verify(studentRepository).findById(studentId);
+        verify(studentRepository, never()).delete(any(Student.class));
+
+    }
+    @Test
+    void getStudentById_Success() {
+        // Given
+        Long studentId = 1L;
+        when(studentRepository.findByIdWithSubjects(studentId)).thenReturn(Optional.of(student));
+
+        // When
+        StudentResponse result = studentService.getStudentById(studentId);
+
+        // Then
+        assertNotNull(result);
+        assertEquals(student.getId(), result.getId());
+        verify(studentRepository).findByIdWithSubjects(studentId);
+    }
+    @Test
+    void getStudentById_StudentNotFound_ThrowsException() {
+        // Given
+        Long studentId = 1L;
+        when(studentRepository.findByIdWithSubjects(studentId)).thenReturn(Optional.empty());
+
+        // When & Then
+        ResourceNotFoundException exception = assertThrows(
+                ResourceNotFoundException.class,
+                () -> studentService.getStudentById(studentId)
+        );
+
+        assertTrue(exception.getMessage().contains("Student not found"));
+        verify(studentRepository).findByIdWithSubjects(studentId);
+    }
 }

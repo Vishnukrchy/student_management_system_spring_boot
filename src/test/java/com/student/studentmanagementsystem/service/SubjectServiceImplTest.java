@@ -17,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -179,5 +180,29 @@ class SubjectServiceImplTest {
         );
         assertTrue(exception.getMessage().contains("Subject not found"));
         verify(subjectRepository).findById(subjectId);
+    }
+
+    @Test
+    void getAllSubjects_Success() {
+        // Given
+        when(subjectRepository.findAll()).thenReturn(List.of(subject));
+        // When
+        List<SubjectResponse> result = subjectService.getAllSubjects();
+        // Then
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        verify(subjectRepository).findAll();
+    }
+
+    @Test
+    void getAllSubjects_EmptyList() {
+        // Given
+        when(subjectRepository.findAll()).thenReturn(List.of());
+        // When
+        List<SubjectResponse> result = subjectService.getAllSubjects();
+        // Then
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+        verify(subjectRepository).findAll();
     }
 }
